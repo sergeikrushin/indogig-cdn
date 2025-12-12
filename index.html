@@ -3041,11 +3041,10 @@ function initializeLanguageSystem() {
         });
     });
     
-    // Apply initial translation if ID
-    if (currentLang === 'id') {
-        translatePage('id');
-        // Re-initialize event handlers after translation
-    }
+    // HTML already in Indonesian, no need to translate on load
+    // if (currentLang === 'id') {
+    //     translatePage('id');
+    // }
     
     console.log(`🌐 Initial language: ${currentLang.toUpperCase()}`);
     

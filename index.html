@@ -1906,7 +1906,7 @@
                     <span class="launch-badge">🚀</span>
                     <span class="rating-text">Segera Diluncurkan di Bali</span>
                 </div>
-                <h1>Bekerja Hari Ini. <span>Dibayar Hari Ini.</span></h1>
+                <h1>Work Today. <span>Dibayar Hari Ini.</span></h1>
                 <p class="hero-description">Jadilah yang pertama bergabung dengan platform staffing fleksibel Indonesia. Hubungkan dengan peluang gig terverifikasi di hospitality, retail, acara, logistik, dan banyak lagi. Bergabunglah dengan komunitas pendiri kami.</p>
                 <div class="hero-cta">
                     <a href="https://app.indogig.com/job?auth=start&state=gig_seeker" class="btn btn-primary">Daftar Sekarang →</a>
@@ -3102,111 +3102,6 @@ if (document.readyState === 'loading') {
 setTimeout(initializeLanguageSystem, 1000);
 
 // Function to re-initialize event handlers after HTML restoration
-function initializeEventHandlers() {
-    // Re-initialize language buttons
-    const langButtons = document.querySelectorAll('.lang-btn');
-    langButtons.forEach(btn => {
-        const btnLang = btn.getAttribute('data-lang');
-        if (btnLang === currentLang) {
-            btn.classList.add('active');
-        } else {
-            btn.classList.remove('active');
-        }
-        
-        // Remove old listeners by cloning
-        const newBtn = btn.cloneNode(true);
-        btn.parentNode.replaceChild(newBtn, btn);
-    });
-    
-    // Add fresh listeners to language buttons
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const selectedLang = this.getAttribute('data-lang');
-            
-            console.log(`🔄 Switching to: ${selectedLang.toUpperCase()}`);
-            
-            // Update active state
-            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            
-            // Translate page
-            translatePage(selectedLang);
-        });
-    });
-    
-    // Re-initialize smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
-    });
-    
-    // Re-initialize calculator if exists
-    const shiftsRange = document.getElementById('shiftsRange');
-    const hoursRange = document.getElementById('hoursRange');
-    const rateSelect = document.getElementById('rateSelect');
-    
-    if (shiftsRange && hoursRange && rateSelect) {
-        const calculateEarnings = function() {
-            const shiftsValue = document.getElementById('shiftsValue');
-            const hoursValue = document.getElementById('hoursValue');
-            const resultAmount = document.getElementById('resultAmount');
-            const resultBreakdown = document.getElementById('resultBreakdown');
-            
-            const shifts = parseInt(shiftsRange.value);
-            const hours = parseInt(hoursRange.value);
-            const rate = parseInt(rateSelect.value);
-            const weeks = 4;
-            const monthly = shifts * hours * rate * weeks;
-            
-            shiftsValue.textContent = shifts;
-            hoursValue.textContent = hours;
-            resultAmount.textContent = monthly.toLocaleString('id-ID') + ' IDR';
-            resultBreakdown.textContent = `${shifts} shifts × ${hours} hours × ${rate.toLocaleString('id-ID')} IDR × ${weeks} weeks`;
-        };
-        
-        shiftsRange.addEventListener('input', calculateEarnings);
-        hoursRange.addEventListener('input', calculateEarnings);
-        rateSelect.addEventListener('change', calculateEarnings);
-        calculateEarnings();
-    }
-    
-    // Re-initialize tab switcher
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const workersSteps = document.getElementById('workers-steps');
-    const businessesSteps = document.getElementById('businesses-steps');
-    
-    if (tabButtons.length > 0 && workersSteps && businessesSteps) {
-        tabButtons.forEach(btn => {
-            // Remove old listeners by cloning
-            const newBtn = btn.cloneNode(true);
-            btn.parentNode.replaceChild(newBtn, btn);
-        });
-        
-        // Add fresh listeners
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const targetTab = this.getAttribute('data-tab');
-                
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                if (targetTab === 'workers') {
-                    workersSteps.style.display = 'grid';
-                    businessesSteps.style.display = 'none';
-                } else if (targetTab === 'businesses') {
-                    workersSteps.style.display = 'none';
-                    businessesSteps.style.display = 'grid';
-                }
-            });
-        });
-    }
-
 // ============================================
 // TAB SWITCHER INITIALIZATION
 // ============================================
